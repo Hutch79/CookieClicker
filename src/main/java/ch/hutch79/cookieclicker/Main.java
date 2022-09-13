@@ -1,5 +1,6 @@
 package ch.hutch79.cookieclicker;
 
+import ch.hutch79.cookieclicker.util.GuiListerne;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,9 @@ public final class Main extends JavaPlugin{
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "------------------------------------------");
 
         getCommand("cookieclicker").setExecutor(new CookieClickerCommand(this));
+
+        Bukkit.getPluginManager().registerEvents(new GuiListerne(), this);
+
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
