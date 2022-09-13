@@ -1,0 +1,8 @@
+name: CookieClicker
+version: '${project.version}'
+main: ch.hutch79.cookieclicker.Main
+api-version: 1.19
+authors: [ Hutch79 ]
+commands:
+  cookieclicker:
+    aliases: cookie
