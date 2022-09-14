@@ -6,16 +6,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.*;
 
-
 import java.util.Objects;
 
 
 public class GuiListerne implements Listener {
 
-
-
     @EventHandler
-    public void on(InventoryDragEvent e) {
+    public void onInventoryDrag(InventoryDragEvent e) {
         if (e.getInventory().equals(Gui.getMainInv())) {
             for (int i : e.getRawSlots()) {
                 if (i <= 53) {
@@ -27,7 +24,11 @@ public class GuiListerne implements Listener {
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent e) {
+    public void onInventoryClick(InventoryClickEvent e) {
+
+        if(e.getInventory().equals(Gui.getMainInv()) && e.isShiftClick()) {
+            e.setCancelled(true);
+        }
 
         if (e.getInventory().equals(Gui.getMainInv()) && e.getRawSlot() <= 53) {
             e.setCancelled(true);
@@ -68,11 +69,7 @@ public class GuiListerne implements Listener {
                     } else {
                         player.sendMessage("Da ist nix ");
                     }
-
             }
-
         }
-
     }
-
 }
