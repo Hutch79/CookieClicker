@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.*;
 
-import java.lang.reflect.Type;
+
 import java.util.Objects;
 
 
@@ -16,12 +16,11 @@ public class GuiListerne implements Listener {
 
     @EventHandler
     public void on(InventoryDragEvent e) {
-
         if (e.getInventory().equals(Gui.getMainInv())) {
-
             for (int i : e.getRawSlots()) {
                 if (i <= 53) {
                     e.setCancelled(true);
+                    break;
                 }
             }
         }
