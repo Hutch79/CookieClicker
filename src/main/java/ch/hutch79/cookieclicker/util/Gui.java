@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import ch.hutch79.cookieclicker.util.CookieManager;
 
 public class Gui {
 
@@ -32,7 +33,7 @@ public class Gui {
         mainInv.setItem(9, shop);
 
         player.openInventory(mainInv);
-
+        CookieManager.addCookie(1, player);
 
     }
     public static Inventory getMainInv() {
