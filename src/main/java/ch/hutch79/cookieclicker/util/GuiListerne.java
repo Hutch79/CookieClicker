@@ -4,8 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 
@@ -24,7 +26,7 @@ public class GuiListerne implements Listener {
     }
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e) {
+    public void onInventoryClick(InventoryClickEvent e) throws SQLException {
 
         if(e.getInventory().equals(Gui.getMainInv()) && e.isShiftClick()) {
             e.setCancelled(true);
@@ -41,6 +43,7 @@ public class GuiListerne implements Listener {
 
                 case 9: // Shop
                     player.sendMessage("Das ist der Shop");
+                    DatabaseManager.updateUser(player, 10, 0.3, 2, 0.4);
                     break;
 
                 case 18:

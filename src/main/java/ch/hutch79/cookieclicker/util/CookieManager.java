@@ -2,12 +2,6 @@ package ch.hutch79.cookieclicker.util;
 
 import org.bukkit.entity.Player;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import ch.hutch79.cookieclicker.Main;
-
 public class CookieManager {
 
     public static void addCookie (int keks, Player player) {

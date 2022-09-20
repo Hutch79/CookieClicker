@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import ch.hutch79.cookieclicker.util.CookieManager;
 
 public class Gui {
 
@@ -18,6 +17,7 @@ public class Gui {
         // Placeholder
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
+        assert placeholderMeta != null;
         placeholderMeta.setDisplayName(" ");
         placeholder.setItemMeta(placeholderMeta);
 
@@ -28,6 +28,7 @@ public class Gui {
         // Shop
         ItemStack shop = new ItemStack(Material.GOLD_INGOT);
         ItemMeta shopMeta = shop.getItemMeta();
+        assert shopMeta != null;
         shopMeta.setDisplayName("§6Shop");
         shop.setItemMeta(shopMeta);
         mainInv.setItem(9, shop);
