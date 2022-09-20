@@ -1,16 +1,18 @@
 package ch.hutch79.cookieclicker;
 
 import ch.hutch79.cookieclicker.util.CookieManager;
+import ch.hutch79.cookieclicker.util.DatabaseManager;
 import ch.hutch79.cookieclicker.util.GuiListerne;
 import ch.hutch79.cookieclicker.util.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public final class Main extends JavaPlugin{
 
-    private CookieManager database;
+    private DatabaseManager database;
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -25,9 +27,13 @@ public final class Main extends JavaPlugin{
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
-        database = new CookieManager(this);
+        database = new DatabaseManager(this);
         try {
             database.dbConnect();
+            database.createTable();
+            // PreparedStatement ps = database.getConnection().prepareStatement("");
+
+
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "§cMySQL-Error - Pleas check your MySQL Data!");
             throw new RuntimeException(e);
