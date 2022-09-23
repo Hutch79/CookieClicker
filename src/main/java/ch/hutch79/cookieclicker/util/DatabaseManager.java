@@ -24,7 +24,7 @@ public class DatabaseManager {
     }
 
     public void createTable() {
-        this.executeUpdate("CREATE TABLE IF NOT EXISTS cookies (UUID VARCHAR(100), Cookies DECIMAL(30, 2), CPC DECIMAL(20, 2), CPS DECIMAL(20, 2), Golden_Cookies DECIMAL(30, 0))");
+        this.executeUpdate("CREATE TABLE IF NOT EXISTS Cookies (uuid VARCHAR(100), cookies DECIMAL(30, 2), cpc DECIMAL(20, 2), cps DECIMAL(20, 2), goldenCookies DECIMAL(30, 0))");
     }
 
     public static void Connect() throws SQLException {
@@ -37,21 +37,43 @@ public class DatabaseManager {
         connection = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?useSSL=false", USER, PASSWORD);
     }
 
-    public static void updateUser(Player player, Integer cookies, Double cpc, Integer golden_cookies, Double cps) throws SQLException {
+    public static void updateUser(Player player, Double cookies, Double cpc, Double golden_cookies, Double cps) throws SQLException {
         Connect();
-        DatabaseManager database = main.database;
-        PreparedStatement ps = database.getConnection().prepareStatement("INSERT INTO cookies (UUID,Cookies,CPC,CPS,Golden_Cookies) VALUES (?,?,?,?,?)");
+
+        double cookies_new = cookies;
+        double cpc_new = cpc;
+        double cps_new = cps;
+        double golden_cookies_new = golden_cookies;
+
+        try {
+            ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
+            resultSet.next();
+            double cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", "."));
+            double cpc_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", "."));
+            double cps_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", "."));
+            double golden_cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("goldenCookies")).replace(",", "."));
+
+            cookies_new = cookies + cookies_old;
+            cpc_new = cpc + cpc_old;
+            cps_new = cps + cps_old;
+            golden_cookies_new = golden_cookies + golden_cookies_old;
+        } catch (SQLException ignored){
+        }
+
+        DatabaseManager.getConnection().createStatement().execute("DELETE FROM Cookies WHERE uuid = '" + player.getUniqueId() + "'");
+
+        PreparedStatement ps = getConnection().prepareStatement("INSERT INTO Cookies (uuid,cookies,cpc,cps,goldenCookies) VALUES (?,?,?,?,?)");
         UUID uuid = player.getUniqueId();
         ps.setString(1, String.valueOf(uuid));
-        ps.setInt(2, cookies);
-        ps.setDouble(3, cpc);
-        ps.setDouble(4, cps);
-        ps.setInt(5, golden_cookies);
+        ps.setDouble(2, cookies_new);
+        ps.setDouble(3, cpc_new);
+        ps.setDouble(4, cps_new);
+        ps.setDouble(5, golden_cookies_new);
         ps.execute();
         Disconnect();
     }
 
-    public Connection getConnection() {return connection;}
+    public static Connection getConnection() {return connection;}
 
     public static boolean isConnected() {
         return connection != null;

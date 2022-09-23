@@ -26,7 +26,7 @@ public class CookieClickerCommand implements CommandExecutor{
 
                 UUID uuid = player.getUniqueId();
                 if (Objects.equals(String.valueOf(uuid), "ea0076d8-6297-4b8b-a8ec-544409f35c27")) {
-                    player.sendMessage("UUID: " + player.getUniqueId());
+                    player.sendMessage("§d[§5Debug§d] UUID: " + player.getUniqueId());
                 }
 
                 Gui.mainGui(player);

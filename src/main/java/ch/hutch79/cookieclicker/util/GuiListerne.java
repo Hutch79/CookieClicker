@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -43,7 +45,7 @@ public class GuiListerne implements Listener {
 
                 case 9: // Shop
                     player.sendMessage("Das ist der Shop");
-                    DatabaseManager.updateUser(player, 10, 0.3, 2, 0.4);
+                    DatabaseManager.updateUser(player, 10.0, 0.3, 2.0, 0.4);
                     break;
 
                 case 18:
@@ -68,7 +70,15 @@ public class GuiListerne implements Listener {
                         player.sendMessage("Keksiiii");
                     } else if (e.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE)) {
                         player.sendMessage("Platzhalter");
+                        DatabaseManager.Connect();
+                        ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
+                        resultSet.next();
+                        player.sendMessage("Cookie: " + Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", ".")));
+                        player.sendMessage("CPC: " + Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", ".")));
+                        player.sendMessage("CPS: " + Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", ".")));
 
+
+                        DatabaseManager.Disconnect();
                     } else {
                         player.sendMessage("Da ist nix ");
                     }
