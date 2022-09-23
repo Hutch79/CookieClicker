@@ -11,6 +11,8 @@ import java.util.Objects;
 
 public final class Main extends JavaPlugin{
 
+
+    public DatabaseManager database = new DatabaseManager(this);
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -25,7 +27,7 @@ public final class Main extends JavaPlugin{
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
-        DatabaseManager database = new DatabaseManager(this);
+
         try {
             DatabaseManager.Connect();
             database.createTable();
