@@ -16,6 +16,9 @@ import java.util.Objects;
 
 public class GuiListerne implements Listener {
 
+    int autoklicker = 0;
+    int autoklickerReset = 0;
+
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent e) {
         if (e.getInventory().equals(Gui.getMainInv())) {
@@ -74,11 +77,19 @@ public class GuiListerne implements Listener {
                 default:
 
                     if(Objects.requireNonNull(e.getCurrentItem()).getType().equals(Material.COOKIE)) {
-                        player.sendMessage("Keksiiii");
                         CookieManager.modifyCookie(CookieManager.getCPC(player), player);
-                        player.sendMessage("§cHui");
+                        autoklickerReset = autoklickerReset + 1;
+                        if (autoklickerReset >= 5) {
+                            autoklicker = 0;
+                        }
+
                     } else if (e.getCurrentItem().getType().equals(Material.LIGHT_GRAY_STAINED_GLASS_PANE)) {
                         player.sendMessage("Autoklick Detection");
+                        autoklicker = autoklicker + 1;
+                        autoklickerReset = 0;
+                        if (autoklicker >= 3){
+                            player.closeInventory();
+                        }
                     } else if (e.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE)) {
                         player.sendMessage("Platzhalter");
                     } else {

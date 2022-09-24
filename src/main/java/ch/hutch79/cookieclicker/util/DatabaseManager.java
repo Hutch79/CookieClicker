@@ -47,9 +47,10 @@ public class DatabaseManager {
 
         try {
             ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
+            player.sendMessage("get result");
+            if(resultSet.next()){
+                player.sendMessage("huiii, if");
             resultSet.next();
-            if (resultSet.getString("UUID") != null)
-            {
             double cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", "."));
             double cpc_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", "."));
             double cps_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", "."));
@@ -59,14 +60,16 @@ public class DatabaseManager {
                 cpc_new = cpc + cpc_old;
                 cps_new = cps + cps_old;
                 golden_cookies_new = golden_cookies + golden_cookies_old;
+
+                player.sendMessage("Nutzer existiert");
             }
             else {
                 player.sendMessage("Neuer Nutzer erstellt");
+                cpc_new = 1;
             }
         } catch (SQLException e){
-            cpc_new = 1;
             player.sendMessage("§ccatch");
-            // e.printStackTrace();
+            cpc_new = 1;
         }
         DatabaseManager.getConnection().createStatement().execute("DELETE FROM Cookies WHERE uuid = '" + player.getUniqueId() + "'");
 
