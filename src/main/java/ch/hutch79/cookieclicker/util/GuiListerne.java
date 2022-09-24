@@ -9,7 +9,6 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -83,13 +82,10 @@ public class GuiListerne implements Listener {
                         if (autoklickerReset >= 10) {
                             autoklicker = 0;
                         }
-                        player.sendMessage("Huii vor");
                         Gui.mainGui(player);
-                        player.sendMessage("Huii nach");
 
                     // AutoKlicker Detection
                     } else if (e.getCurrentItem().getType().equals(Material.LIGHT_GRAY_STAINED_GLASS_PANE)) {
-                        player.sendMessage("Autoklick Detection");
                         autoklicker = autoklicker + 1;
                         autoklickerReset = 0;
                         if (autoklicker >= 8){
