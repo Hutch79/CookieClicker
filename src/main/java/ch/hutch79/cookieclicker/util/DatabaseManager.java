@@ -40,36 +40,26 @@ public class DatabaseManager {
     public static void updateUser(Player player, Double cookies, Double cpc, int golden_cookies, Double cps) throws SQLException {
         Connect();
 
-        double cookies_new = cookies;
-        double cpc_new = cpc;
-        double cps_new = cps;
-        int golden_cookies_new = golden_cookies;
+        double cookies_new = 0;
+        double cpc_new = 1;
+        double cps_new = 0;
+        int golden_cookies_new = 0;
 
         try {
             ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
-            player.sendMessage("get result");
             if(resultSet.next()){
-                player.sendMessage("huiii, if");
-            resultSet.next();
-            double cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", "."));
-            double cpc_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", "."));
-            double cps_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", "."));
-            int golden_cookies_old = Integer.parseInt(String.valueOf(resultSet.getInt("goldenCookies")));
+                double cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", "."));
+                double cpc_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", "."));
+                double cps_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", "."));
+                int golden_cookies_old = Integer.parseInt(String.valueOf(resultSet.getInt("goldenCookies")));
 
                 cookies_new = cookies + cookies_old;
                 cpc_new = cpc + cpc_old;
                 cps_new = cps + cps_old;
                 golden_cookies_new = golden_cookies + golden_cookies_old;
-
-                player.sendMessage("Nutzer existiert");
-            }
-            else {
-                player.sendMessage("Neuer Nutzer erstellt");
-                cpc_new = 1;
             }
         } catch (SQLException e){
-            player.sendMessage("§ccatch");
-            cpc_new = 1;
+            e.printStackTrace();
         }
         DatabaseManager.getConnection().createStatement().execute("DELETE FROM Cookies WHERE uuid = '" + player.getUniqueId() + "'");
 
