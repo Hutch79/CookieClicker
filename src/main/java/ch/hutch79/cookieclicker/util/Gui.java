@@ -86,7 +86,7 @@ public class Gui {
         keksMeta.setDisplayName("§6Cookie");
         List<String> lore1 = new ArrayList<String>(); //create a List<String> for the lore
         if (keksCount <= 1) {
-            keksCount = getRandomNumber(5, 30);
+            keksCount = getRandomNumber(32, 128);
             random = getRandomNumber(0, 53);
             while (!list.contains(random)){
                 random = getRandomNumber(0, 53);

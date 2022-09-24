@@ -80,7 +80,7 @@ public class GuiListerne implements Listener {
                     if(Objects.requireNonNull(e.getCurrentItem()).getType().equals(Material.COOKIE)) {
                         CookieManager.modifyCookie(CookieManager.getCPC(player), player);
                         autoklickerReset = autoklickerReset + 1;
-                        if (autoklickerReset >= 5) {
+                        if (autoklickerReset >= 10) {
                             autoklicker = 0;
                         }
                         player.sendMessage("Huii vor");
@@ -92,7 +92,7 @@ public class GuiListerne implements Listener {
                         player.sendMessage("Autoklick Detection");
                         autoklicker = autoklicker + 1;
                         autoklickerReset = 0;
-                        if (autoklicker >= 3){
+                        if (autoklicker >= 8){
                             player.closeInventory();
                         }
                     } else {
