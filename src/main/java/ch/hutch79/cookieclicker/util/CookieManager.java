@@ -9,7 +9,7 @@ public class CookieManager {
     //=================================================================================================================
     // Cookies
     //=================================================================================================================
-    public static void addCookie (double keks, Player player) {
+    public static void modifyCookie (double keks, Player player) {
         try {
             DatabaseManager.updateUser(player, keks, 0.0, 0, 0.0); // Add/Sett values in Database
         }
@@ -30,7 +30,7 @@ public class CookieManager {
     //=================================================================================================================
     // CPC
     //=================================================================================================================
-    public static void addCPC(double cpc, Player player) {
+    public static void modifyCPC(double cpc, Player player) {
         try {
             DatabaseManager.updateUser(player, 0.0, cpc, 0, 0.0); // Add/Sett values in Database
         }
@@ -51,7 +51,7 @@ public class CookieManager {
     //=================================================================================================================
     // CPS
     //=================================================================================================================
-    public static void addCPS(double cps, Player player) {
+    public static void modifyCPS(double cps, Player player) {
         try {
             DatabaseManager.updateUser(player, 0.0, 0.0, 0, cps); // Add/Sett values in Database
         }
@@ -72,7 +72,7 @@ public class CookieManager {
     //=================================================================================================================
     // GoldenCookies
     //=================================================================================================================
-    public static void addGoldenCookies(double cps, Player player) {
+    public static void modifyGoldenCookies(double cps, Player player) {
         try {
             DatabaseManager.updateUser(player, 0.0, 0.0, 0, cps); // Add/Sett values in Database
         }

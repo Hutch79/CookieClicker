@@ -48,18 +48,25 @@ public class DatabaseManager {
         try {
             ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
             resultSet.next();
+            if (resultSet.getString("UUID") != null)
+            {
             double cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", "."));
             double cpc_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", "."));
             double cps_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", "."));
-            int golden_cookies_old = Integer.parseInt(String.format("%.2f", resultSet.getDouble("goldenCookies")));
+            int golden_cookies_old = Integer.parseInt(String.valueOf(resultSet.getInt("goldenCookies")));
 
-            cookies_new = cookies + cookies_old;
-            cpc_new = cpc + cpc_old;
-            cps_new = cps + cps_old;
-            golden_cookies_new = golden_cookies + golden_cookies_old;
-        } catch (SQLException ignored){
+                cookies_new = cookies + cookies_old;
+                cpc_new = cpc + cpc_old;
+                cps_new = cps + cps_old;
+                golden_cookies_new = golden_cookies + golden_cookies_old;
+            }
+            else {
+                player.sendMessage("Neuer Nutzer erstellt");
+            }
+        } catch (SQLException e){
+            // player.sendMessage("§ccatch");
+            // e.printStackTrace();
         }
-
         DatabaseManager.getConnection().createStatement().execute("DELETE FROM Cookies WHERE uuid = '" + player.getUniqueId() + "'");
 
         PreparedStatement ps = getConnection().prepareStatement("INSERT INTO Cookies (uuid,cookies,cpc,cps,goldenCookies) VALUES (?,?,?,?,?)");

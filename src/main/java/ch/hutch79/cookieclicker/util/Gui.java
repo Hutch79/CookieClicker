@@ -7,8 +7,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.sql.SQLException;
-
 public class Gui {
 
     public static Inventory mainInv;
@@ -35,8 +33,18 @@ public class Gui {
         shop.setItemMeta(shopMeta);
         mainInv.setItem(9, shop);
 
+        // AutoKlick Detection
+        ItemStack akDetection = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
+        ItemMeta akDetectionMeta = placeholder.getItemMeta();
+        assert akDetectionMeta != null;
+        akDetectionMeta.setDisplayName(" ");
+        akDetection.setItemMeta(placeholderMeta);
+
+        for( int i : new int[]{2,3,4,5,6,7,8,11,12,13,14,15,16,17,20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,40,41,42,43,44,47,48,49,50,51,52,53}) {
+            mainInv.setItem(i, akDetection);
+        }
+
         player.openInventory(mainInv);
-        CookieManager.addCookie(1, player);
 
     }
     public static Inventory getMainInv() {

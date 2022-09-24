@@ -51,7 +51,7 @@ public class GuiListerne implements Listener {
 
                 case 9: // Shop
                     player.sendMessage("Das ist der Shop");
-                    CookieManager.addCookie(1, player);
+                    CookieManager.modifyCookie(1, player);
                     player.sendMessage("Kekse: " + CookieManager.getCookie(player));
                     break;
 
@@ -75,6 +75,8 @@ public class GuiListerne implements Listener {
 
                     if(Objects.requireNonNull(e.getCurrentItem()).getType().equals(Material.COOKIE)) {
                         player.sendMessage("Keksiiii");
+                    } else if (e.getCurrentItem().getType().equals(Material.LIGHT_GRAY_STAINED_GLASS_PANE)) {
+                        player.sendMessage("Autoklick Detection");
                     } else if (e.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE)) {
                         player.sendMessage("Platzhalter");
                     } else {
