@@ -17,8 +17,8 @@ import java.util.Random;
 
 public class Gui {
 
-    private static int keksCount;
-    private static int random;
+    private static int keksCount = 0;
+    private static int random = 0;
 
     public static int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
@@ -85,11 +85,9 @@ public class Gui {
         assert keksMeta != null;
         keksMeta.setDisplayName("§6Cookie");
         List<String> lore1 = new ArrayList<String>(); //create a List<String> for the lore
-        lore1.add("§3Anzahl: §6" + keksCount);
-        keksMeta.setLore(lore1);
-        keks.setItemMeta(keksMeta);
-        if (keksCount <= 0) {
-            int keksCount = getRandomNumber(5, 30);
+        if (keksCount <= 1) {
+            keksCount = getRandomNumber(5, 30);
+            random = getRandomNumber(0, 53);
             while (!list.contains(random)){
                 random = getRandomNumber(0, 53);
             }
@@ -97,6 +95,9 @@ public class Gui {
         else {
             keksCount = keksCount - 1;
         }
+        lore1.add("§3Anzahl: §6" + keksCount);
+        keksMeta.setLore(lore1);
+        keks.setItemMeta(keksMeta);
         mainInv.setItem(random, keks);
 
         player.openInventory(mainInv);
