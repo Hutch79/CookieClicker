@@ -2,18 +2,19 @@ package ch.hutch79.cookieclicker.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.checkerframework.checker.units.qual.A;
 
-import javax.xml.crypto.Data;
+
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class Gui {
 
@@ -24,11 +25,11 @@ public class Gui {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public static Inventory mainInv;
-
     public static void mainGui(Player player) throws SQLException {
+        Inventory mainInv;
+
         player.sendMessage("Execute mainGui");
-        mainInv = Bukkit.createInventory(player, 54, "CookieClicker");
+        mainInv = Bukkit.createInventory(player, 54, "§6CookieClicker");
 
         // Placeholder
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
@@ -103,8 +104,4 @@ public class Gui {
         player.openInventory(mainInv);
 
     }
-    public static Inventory getMainInv() {
-        return mainInv;
-    }
-
 }

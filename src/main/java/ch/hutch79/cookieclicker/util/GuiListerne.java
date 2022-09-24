@@ -20,7 +20,7 @@ public class GuiListerne implements Listener {
 
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent e) {
-        if (e.getInventory().equals(Gui.getMainInv())) {
+        if (e.getView().getTitle().equals("§6CookieClicker")) {
             for (int i : e.getRawSlots()) {
                 if (i <= 53) {
                     e.setCancelled(true);
@@ -38,11 +38,11 @@ public class GuiListerne implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) throws SQLException {
 
-        if(e.getInventory().equals(Gui.getMainInv()) && e.isShiftClick()) {
+        if(e.getView().getTitle().equals("§6CookieClicker")) {
             e.setCancelled(true);
         }
 
-        if (e.getInventory().equals(Gui.getMainInv()) && e.getRawSlot() <= 53) {
+        if (e.getView().getTitle().equals("§6CookieClicker") && e.getRawSlot() <= 53) {
             e.setCancelled(true);
             Player player = (Player) e.getWhoClicked();
 
@@ -77,7 +77,8 @@ public class GuiListerne implements Listener {
 
                     // Cookie
                     if(Objects.requireNonNull(e.getCurrentItem()).getType().equals(Material.COOKIE)) {
-                        CookieManager.modifyCookie(CookieManager.getCPC(player), player);
+                        double cpc = CookieManager.getCPC(player);
+                        CookieManager.modifyCookie(cpc, player);
                         autoklickerReset = autoklickerReset + 1;
                         if (autoklickerReset >= 10) {
                             autoklicker = 0;
