@@ -9,21 +9,24 @@ public class CookieManager {
     //=================================================================================================================
     // Cookies
     //=================================================================================================================
-    public static void modifyCookie (double keks, Player player) {
+    public static void modifyCookie(double keks, Player player) {
         try {
             DatabaseManager.updateUser(player, keks, 0.0, 0, 0.0); // Add/Sett values in Database
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static double getCookie(Player player) throws SQLException {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
-        resultSet.next(); // Jump to next entry. First one is always null
+        if (!resultSet.next()) {
+            //Keine Einträge vorhanden
+            return 0.0;
+        }
         double keksi = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
+        //Halte die Connection warm. Sonst gibt's z.B. Lags
+        //DatabaseManager.Disconnect();
         return keksi;
     }
 
@@ -33,18 +36,21 @@ public class CookieManager {
     public static void modifyCPC(double cpc, Player player) {
         try {
             DatabaseManager.updateUser(player, 0.0, cpc, 0, 0.0); // Add/Sett values in Database
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static double getCPC(Player player) throws SQLException {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
-        resultSet.next(); // Jump to next entry. First one is always null
+        if (!resultSet.next()) {
+            //Keine Einträge vorhanden
+            return 0.0;
+        }
         double cpc = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
+        //Halte die Connection warm. Sonst gibt's z.B. Lags
+        //DatabaseManager.Disconnect();
         return cpc;
     }
 
@@ -54,18 +60,21 @@ public class CookieManager {
     public static void modifyCPS(double cps, Player player) {
         try {
             DatabaseManager.updateUser(player, 0.0, 0.0, 0, cps); // Add/Sett values in Database
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static double getCPS(Player player) throws SQLException {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
-        resultSet.next(); // Jump to next entry. First one is always null
+        if (!resultSet.next()) {
+            //Keine Einträge vorhanden
+            return 0.0;
+        }
         double cps = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
+        //Halte die Connection warm. Sonst gibt's z.B. Lags
+        //DatabaseManager.Disconnect();
         return cps;
     }
 
@@ -75,18 +84,21 @@ public class CookieManager {
     public static void modifyGoldenCookies(double cps, Player player) {
         try {
             DatabaseManager.updateUser(player, 0.0, 0.0, 0, cps); // Add/Sett values in Database
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static double getGoldenCookies(Player player) throws SQLException {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
-        resultSet.next(); // Jump to next entry. First one is always null
+        if (resultSet.next()) {
+            //Keine Einträge vorhanden
+            return 0.0;
+        }
         double goldenCookies = Double.parseDouble(String.format("%.2f", resultSet.getDouble("goldenCookies")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
+        //Halte die Connection warm. Sonst gibt's z.B. Lags
+        //DatabaseManager.Disconnect();
         return goldenCookies;
     }
 }

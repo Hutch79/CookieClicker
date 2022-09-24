@@ -7,28 +7,26 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.checkerframework.checker.units.qual.A;
 
-import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Gui {
 
-    private static int keksCount = 0;
-    private static int random = 0;
+    public Inventory mainInv;
+    private int keksCount = 0;
+    private int random = 0;
+    private int autoklicker = 0;
+    private int autoklickerReset = 0;
 
-    public static int getRandomNumber(int min, int max) {
+    public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public static Inventory mainInv;
-
-    public static void mainGui(Player player) throws SQLException {
+    public void mainGui(Player player) throws SQLException {
         player.sendMessage("Execute mainGui");
-        mainInv = Bukkit.createInventory(player, 54, "CookieClicker");
+        this.mainInv = Bukkit.createInventory(player, 54, "§cCookieClicker");
 
         // Placeholder
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
@@ -37,9 +35,7 @@ public class Gui {
         placeholderMeta.setDisplayName(" ");
         placeholder.setItemMeta(placeholderMeta);
 
-        for( int i : new int[]{1, 10, 19, 28, 37, 46}) {
-            mainInv.setItem(i, placeholder);
-        }
+        for (int i : new int[]{1, 10, 19, 28, 37, 46}) this.mainInv.setItem(i, placeholder);
 
         // Shop
         ItemStack shop = new ItemStack(Material.GOLD_INGOT);
@@ -47,7 +43,7 @@ public class Gui {
         assert shopMeta != null;
         shopMeta.setDisplayName("§6Shop");
         shop.setItemMeta(shopMeta);
-        mainInv.setItem(9, shop);
+        this.mainInv.setItem(9, shop);
 
         // AutoKlick Detection
         ItemStack akDetection = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
@@ -56,9 +52,9 @@ public class Gui {
         akDetectionMeta.setDisplayName(" ");
         akDetection.setItemMeta(placeholderMeta);
 
-        for( int i : new int[]{2,3,4,5,6,7,8,11,12,13,14,15,16,17,20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,40,41,42,43,44,47,48,49,50,51,52,53}) {
-            mainInv.setItem(i, akDetection);
-        }
+        //Bessere for-Schleife, übersichtlicher
+        for (int i = 2; i < 54; i++)
+            this.mainInv.setItem(i, akDetection);
 
         // Player Head
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
@@ -66,45 +62,59 @@ public class Gui {
         assert headMeta != null;
         headMeta.setDisplayName(player.getName());
         headMeta.setOwningPlayer(player);
-        List<String> lore = new ArrayList<String>(); //create a List<String> for the lore
+        List<String> lore = new ArrayList<>(); //create a List<String> for the lore
         lore.add("§3Kekse: §6" + CookieManager.getCookie(player));
         lore.add("§3CPC: §6" + CookieManager.getCPC(player));
         headMeta.setLore(lore);
         head.setItemMeta(headMeta);
-        mainInv.setItem(0, head);
+        this.mainInv.setItem(0, head);
 
         // Cookie
 
         ArrayList list = new ArrayList();
-        for( int i : new int[]{2,3,4,5,6,7,8,11,12,13,14,15,16,17,20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,40,41,42,43,44,47,48,49,50,51,52,53}) {
+        //Bessere for-Schleife, übersichtlicher
+        for (int i = 2; i < 54; i++)
             list.add(i);
-        }
 
         ItemStack keks = new ItemStack(Material.COOKIE);
         ItemMeta keksMeta = keks.getItemMeta();
         assert keksMeta != null;
         keksMeta.setDisplayName("§6Cookie");
-        List<String> lore1 = new ArrayList<String>(); //create a List<String> for the lore
-        if (keksCount <= 1) {
-            keksCount = getRandomNumber(32, 128);
-            random = getRandomNumber(0, 53);
-            while (!list.contains(random)){
-                random = getRandomNumber(0, 53);
-            }
-        }
+        List<String> lore1 = new ArrayList<>(); //create a List<String> for the lore
+        if (this.keksCount > 1) this.keksCount = this.keksCount - 1;
         else {
-            keksCount = keksCount - 1;
+            this.keksCount = this.getRandomNumber(32, 128);
+            this.random = this.getRandomNumber(0, 53);
+            while (!list.contains(this.random))
+                this.random = this.getRandomNumber(0, 53);
         }
-        lore1.add("§3Anzahl: §6" + keksCount);
+        lore1.add("§3Anzahl: §6" + this.keksCount);
         keksMeta.setLore(lore1);
         keks.setItemMeta(keksMeta);
-        mainInv.setItem(random, keks);
+        this.mainInv.setItem(this.random, keks);
 
-        player.openInventory(mainInv);
+        player.openInventory(this.mainInv);
 
     }
-    public static Inventory getMainInv() {
-        return mainInv;
+
+    public int getAutoklicker() {
+        return this.autoklicker;
+    }
+
+    public void setAutoklicker(int autoklicker) {
+        this.autoklicker = autoklicker;
+    }
+
+    public int getAutoklickerReset() {
+        return this.autoklickerReset;
+    }
+
+    public void setAutoklickerReset(int autoklickerReset) {
+        this.autoklickerReset = autoklickerReset;
+    }
+
+    public Inventory getMainInv() {
+        return this.mainInv;
     }
 
 }
