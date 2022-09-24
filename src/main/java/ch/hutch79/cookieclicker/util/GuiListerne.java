@@ -75,6 +75,8 @@ public class GuiListerne implements Listener {
 
                     if(Objects.requireNonNull(e.getCurrentItem()).getType().equals(Material.COOKIE)) {
                         player.sendMessage("Keksiiii");
+                        CookieManager.modifyCookie(CookieManager.getCPC(player), player);
+                        player.sendMessage("§cHui");
                     } else if (e.getCurrentItem().getType().equals(Material.LIGHT_GRAY_STAINED_GLASS_PANE)) {
                         player.sendMessage("Autoklick Detection");
                     } else if (e.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE)) {

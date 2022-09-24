@@ -64,7 +64,8 @@ public class DatabaseManager {
                 player.sendMessage("Neuer Nutzer erstellt");
             }
         } catch (SQLException e){
-            // player.sendMessage("§ccatch");
+            cpc_new = 1;
+            player.sendMessage("§ccatch");
             // e.printStackTrace();
         }
         DatabaseManager.getConnection().createStatement().execute("DELETE FROM Cookies WHERE uuid = '" + player.getUniqueId() + "'");

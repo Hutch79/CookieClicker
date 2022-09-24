@@ -6,11 +6,23 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.checkerframework.checker.units.qual.A;
+
+import javax.xml.crypto.Data;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Gui {
 
+    public static int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
     public static Inventory mainInv;
-    public static void mainGui(Player player) {
+    public static void mainGui(Player player) throws SQLException {
 
         mainInv = Bukkit.createInventory(player, 54, "CookieClicker");
 
@@ -43,6 +55,39 @@ public class Gui {
         for( int i : new int[]{2,3,4,5,6,7,8,11,12,13,14,15,16,17,20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,40,41,42,43,44,47,48,49,50,51,52,53}) {
             mainInv.setItem(i, akDetection);
         }
+
+        // Player Head
+        ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta headMeta = (SkullMeta) head.getItemMeta();
+        assert headMeta != null;
+        headMeta.setDisplayName(player.getName());
+        headMeta.setOwningPlayer(player);
+        List<String> lore = new ArrayList<String>(); //create a List<String> for the lore
+        lore.add("§3Kekse: §6" + CookieManager.getCookie(player));
+        lore.add("§3CPC: §6" + CookieManager.getCPC(player));
+        headMeta.setLore(lore);
+        head.setItemMeta(headMeta);
+        mainInv.setItem(0, head);
+
+        // Cookie
+
+        ArrayList list = new ArrayList();
+        for( int i : new int[]{2,3,4,5,6,7,8,11,12,13,14,15,16,17,20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,40,41,42,43,44,47,48,49,50,51,52,53}) {
+            list.add(i);
+        }
+
+        int random = 0;
+        while (!list.contains(random)){
+            random = getRandomNumber(0, 53);
+        }
+
+        ItemStack keks = new ItemStack(Material.COOKIE);
+        ItemMeta keksMeta = shop.getItemMeta();
+        assert keksMeta != null;
+        keksMeta.setDisplayName("§6Cookie");
+        keks.setItemMeta(keksMeta);
+        mainInv.setItem(random, keks);
+
 
         player.openInventory(mainInv);
 
