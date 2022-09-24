@@ -28,7 +28,6 @@ public class Gui {
     public static void mainGui(Player player) throws SQLException {
         Inventory mainInv;
 
-        player.sendMessage("Execute mainGui");
         mainInv = Bukkit.createInventory(player, 54, "§6CookieClicker");
 
         // Placeholder
