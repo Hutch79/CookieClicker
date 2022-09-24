@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ch.hutch79.cookieclicker.util.Gui;
 
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,8 +29,7 @@ public class CookieClickerCommand implements CommandExecutor{
                 if (Objects.equals(String.valueOf(uuid), "ea0076d8-6297-4b8b-a8ec-544409f35c27")) {
                     player.sendMessage("§d[§5Debug§d] UUID: " + player.getUniqueId());
                 }
-
-                Gui.mainGui(player);
+                 Gui.mainGui(player);
             }
             else {
                 player.sendMessage(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm"));

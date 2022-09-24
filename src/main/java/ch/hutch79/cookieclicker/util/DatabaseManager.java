@@ -37,13 +37,13 @@ public class DatabaseManager {
         connection = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?useSSL=false", USER, PASSWORD);
     }
 
-    public static void updateUser(Player player, Double cookies, Double cpc, Double golden_cookies, Double cps) throws SQLException {
+    public static void updateUser(Player player, Double cookies, Double cpc, int golden_cookies, Double cps) throws SQLException {
         Connect();
 
         double cookies_new = cookies;
         double cpc_new = cpc;
         double cps_new = cps;
-        double golden_cookies_new = golden_cookies;
+        int golden_cookies_new = golden_cookies;
 
         try {
             ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
@@ -51,7 +51,7 @@ public class DatabaseManager {
             double cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", "."));
             double cpc_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", "."));
             double cps_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", "."));
-            double golden_cookies_old = Double.parseDouble(String.format("%.2f", resultSet.getDouble("goldenCookies")).replace(",", "."));
+            int golden_cookies_old = Integer.parseInt(String.format("%.2f", resultSet.getDouble("goldenCookies")));
 
             cookies_new = cookies + cookies_old;
             cpc_new = cpc + cpc_old;
@@ -68,7 +68,7 @@ public class DatabaseManager {
         ps.setDouble(2, cookies_new);
         ps.setDouble(3, cpc_new);
         ps.setDouble(4, cps_new);
-        ps.setDouble(5, golden_cookies_new);
+        ps.setInt(5, golden_cookies_new);
         ps.execute();
         Disconnect();
     }

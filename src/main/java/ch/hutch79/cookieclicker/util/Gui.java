@@ -7,6 +7,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.sql.SQLException;
+
 public class Gui {
 
     public static Inventory mainInv;

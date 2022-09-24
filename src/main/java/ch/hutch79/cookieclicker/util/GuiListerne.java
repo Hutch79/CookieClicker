@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 
 
@@ -28,6 +29,11 @@ public class GuiListerne implements Listener {
     }
 
     @EventHandler
+    public void InventoryClose(InventoryCloseEvent e) {
+
+    }
+
+    @EventHandler
     public void onInventoryClick(InventoryClickEvent e) throws SQLException {
 
         if(e.getInventory().equals(Gui.getMainInv()) && e.isShiftClick()) {
@@ -45,7 +51,8 @@ public class GuiListerne implements Listener {
 
                 case 9: // Shop
                     player.sendMessage("Das ist der Shop");
-                    DatabaseManager.updateUser(player, 10.0, 0.3, 2.0, 0.4);
+                    CookieManager.addCookie(1, player);
+                    player.sendMessage("Kekse: " + CookieManager.getCookie(player));
                     break;
 
                 case 18:
@@ -70,15 +77,6 @@ public class GuiListerne implements Listener {
                         player.sendMessage("Keksiiii");
                     } else if (e.getCurrentItem().getType().equals(Material.BLACK_STAINED_GLASS_PANE)) {
                         player.sendMessage("Platzhalter");
-                        DatabaseManager.Connect();
-                        ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'");
-                        resultSet.next();
-                        player.sendMessage("Cookie: " + Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", ".")));
-                        player.sendMessage("CPC: " + Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", ".")));
-                        player.sendMessage("CPS: " + Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", ".")));
-
-
-                        DatabaseManager.Disconnect();
                     } else {
                         player.sendMessage("Da ist nix ");
                     }
