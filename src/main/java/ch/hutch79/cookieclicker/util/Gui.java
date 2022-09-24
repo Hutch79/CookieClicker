@@ -17,13 +17,17 @@ import java.util.Random;
 
 public class Gui {
 
+    private static int keksCount;
+    private static int random;
+
     public static int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
     public static Inventory mainInv;
-    public static void mainGui(Player player) throws SQLException {
 
+    public static void mainGui(Player player) throws SQLException {
+        player.sendMessage("Execute mainGui");
         mainInv = Bukkit.createInventory(player, 54, "CookieClicker");
 
         // Placeholder
@@ -76,18 +80,24 @@ public class Gui {
             list.add(i);
         }
 
-        int random = 0;
-        while (!list.contains(random)){
-            random = getRandomNumber(0, 53);
-        }
-
         ItemStack keks = new ItemStack(Material.COOKIE);
-        ItemMeta keksMeta = shop.getItemMeta();
+        ItemMeta keksMeta = keks.getItemMeta();
         assert keksMeta != null;
         keksMeta.setDisplayName("§6Cookie");
+        List<String> lore1 = new ArrayList<String>(); //create a List<String> for the lore
+        lore1.add("§3Anzahl: §6" + keksCount);
+        keksMeta.setLore(lore1);
         keks.setItemMeta(keksMeta);
+        if (keksCount <= 0) {
+            int keksCount = getRandomNumber(5, 30);
+            while (!list.contains(random)){
+                random = getRandomNumber(0, 53);
+            }
+        }
+        else {
+            keksCount = keksCount - 1;
+        }
         mainInv.setItem(random, keks);
-
 
         player.openInventory(mainInv);
 

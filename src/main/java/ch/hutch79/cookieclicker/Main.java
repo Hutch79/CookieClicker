@@ -55,6 +55,7 @@ public final class Main extends JavaPlugin{
 
         DatabaseManager.Disconnect();
 
+
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + " §6CookieClicker §bby Hutch79");
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + " §7Has been §cDisabled");
