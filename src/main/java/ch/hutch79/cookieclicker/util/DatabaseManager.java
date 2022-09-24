@@ -28,6 +28,9 @@ public class DatabaseManager {
     }
 
     public static void Connect() throws SQLException {
+        if (isConnected())
+            return;
+
         String HOST = main.getConfig().getString("database.address");
         int PORT = main.getConfig().getInt("database.port");
         String DATABASE = main.getConfig().getString("database.database");
