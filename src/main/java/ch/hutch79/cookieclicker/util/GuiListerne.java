@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 
 
@@ -20,7 +19,7 @@ public class GuiListerne implements Listener {
 
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent e) {
-        if (e.getView().getTitle().equals("§6CookieClicker")) {
+        if (e.getView().getTitle().equals("§6CookieClicker") || e.getView().getTitle().equals("§6CookieClicker - Upgrade")) {
             for (int i : e.getRawSlots()) {
                 if (i <= 53) {
                     e.setCancelled(true);
@@ -31,18 +30,13 @@ public class GuiListerne implements Listener {
     }
 
     @EventHandler
-    public void InventoryClose(InventoryCloseEvent e) {
-
-    }
-
-    @EventHandler
     public void onInventoryClick(InventoryClickEvent e) throws SQLException {
 
-        if(e.getView().getTitle().equals("§6CookieClicker")) {
+        if((e.getView().getTitle().equals("§6CookieClicker") || e.getView().getTitle().equals("§6CookieClicker - Upgrade")) && e.getRawSlot() <= 53) {
             e.setCancelled(true);
         }
 
-        if (e.getView().getTitle().equals("§6CookieClicker") && e.getRawSlot() <= 53) {
+        if ((e.getView().getTitle().equals("§6CookieClicker") || e.getView().getTitle().equals("§6CookieClicker - Upgrade")) && e.getRawSlot() <= 53) {
             e.setCancelled(true);
             Player player = (Player) e.getWhoClicked();
 
@@ -51,14 +45,13 @@ public class GuiListerne implements Listener {
                     player.sendMessage("Slot 0");
                     break;
 
-                case 9: // Shop
-                    player.sendMessage("Das ist der Shop");
-                    CookieManager.modifyCookie(1, player);
-                    player.sendMessage("Kekse: " + CookieManager.getCookie(player));
+                case 9: // Klicker
+                    Gui.mainGui(player, 1);
                     break;
 
-                case 18:
+                case 18: // Shop
                     player.sendMessage("Slot 18");
+                    Gui.mainGui(player, 2);
                     break;
 
                 case 27:
@@ -83,7 +76,7 @@ public class GuiListerne implements Listener {
                         if (autoklickerReset >= 10) {
                             autoklicker = 0;
                         }
-                        Gui.mainGui(player);
+                        Gui.mainGui(player, 1);
 
                     // AutoKlicker Detection
                     } else if (e.getCurrentItem().getType().equals(Material.LIGHT_GRAY_STAINED_GLASS_PANE)) {
