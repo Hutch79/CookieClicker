@@ -31,7 +31,7 @@ public class CookieClickerCommand implements CommandExecutor{
                     player.sendMessage("§d[§5Debug§d] UUID: " + player.getUniqueId());
                 }
                 try {
-                    DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0);
+                    DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                     Gui.mainGui(player, 1);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

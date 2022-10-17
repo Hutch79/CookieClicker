@@ -117,6 +117,11 @@ public class Gui {
             ItemMeta upgrade1Meta = upgrade1.getItemMeta();
             assert upgrade1Meta != null;
             upgrade1Meta.setDisplayName("§6Upgrade 1");
+            List<String> upgrade1Lore = new ArrayList<String>(); //create a List<String> for the lore
+            upgrade1Lore.add("§3Preis: §6" + CookieManager.getUpgrade(1, player));
+            upgrade1Lore.add("§3CPC: §6+0.3");
+            upgrade1Lore.add("§3Kontostand: §6" + CookieManager.getCookie(player));
+            upgrade1Meta.setLore(upgrade1Lore);
             upgrade1.setItemMeta(upgrade1Meta);
             mainInv.setItem(2, upgrade1);
         }
