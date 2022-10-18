@@ -45,7 +45,7 @@ public class DatabaseManager {
         double cpc_new = 1;
         double cps_new = 0;
         int golden_cookies_new = 0;
-        double upgrade1_new = 100;
+        double upgrade1_new = 0;
         double upgrade2_new = 0;
         double upgrade3_new = 0;
         double upgrade4_new = 0;

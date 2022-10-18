@@ -113,17 +113,69 @@ public class Gui {
 
         } else if (page == 2) {
             // 1. Upgrade
-            ItemStack upgrade1 = new ItemStack(Material.DIAMOND);
+            ItemStack upgrade1 = new ItemStack(Material.CLAY_BALL);
             ItemMeta upgrade1Meta = upgrade1.getItemMeta();
             assert upgrade1Meta != null;
             upgrade1Meta.setDisplayName("§6Upgrade 1");
             List<String> upgrade1Lore = new ArrayList<String>(); //create a List<String> for the lore
             upgrade1Lore.add("§3Preis: §6" + CookieManager.getUpgrade(1, player));
-            upgrade1Lore.add("§3CPC: §6+0.3");
+            upgrade1Lore.add("§3CPC: §6+0.1");
             upgrade1Lore.add("§3Kontostand: §6" + CookieManager.getCookie(player));
             upgrade1Meta.setLore(upgrade1Lore);
             upgrade1.setItemMeta(upgrade1Meta);
             mainInv.setItem(2, upgrade1);
+
+            // 2. Upgrade
+            ItemStack upgrade2 = new ItemStack(Material.BRICK);
+            ItemMeta upgrade2Meta = upgrade2.getItemMeta();
+            assert upgrade2Meta != null;
+            upgrade2Meta.setDisplayName("§6Upgrade 2");
+            List<String> upgrade2Lore = new ArrayList<String>(); //create a List<String> for the lore
+            upgrade2Lore.add("§3Preis: §6" + CookieManager.getUpgrade(2, player));
+            upgrade2Lore.add("§3CPC: §6+0.3");
+            upgrade2Lore.add("§3Kontostand: §6" + CookieManager.getCookie(player));
+            upgrade2Meta.setLore(upgrade2Lore);
+            upgrade2.setItemMeta(upgrade2Meta);
+            mainInv.setItem(3, upgrade2);
+
+            // 3. Upgrade
+            ItemStack upgrade3 = new ItemStack(Material.BRICK);
+            ItemMeta upgrade3Meta = upgrade3.getItemMeta();
+            assert upgrade3Meta != null;
+            upgrade3Meta.setDisplayName("§6Upgrade 3");
+            List<String> upgrade3Lore = new ArrayList<String>(); //create a List<String> for the lore
+            upgrade3Lore.add("§3Preis: §6" + CookieManager.getUpgrade(3, player));
+            upgrade3Lore.add("§3CPC: §6+1.0");
+            upgrade3Lore.add("§3Kontostand: §6" + CookieManager.getCookie(player));
+            upgrade3Meta.setLore(upgrade3Lore);
+            upgrade3.setItemMeta(upgrade3Meta);
+            mainInv.setItem(4, upgrade3);
+
+            // 4. Upgrade
+            ItemStack upgrade4 = new ItemStack(Material.BRICK);
+            ItemMeta upgrade4Meta = upgrade4.getItemMeta();
+            assert upgrade4Meta != null;
+            upgrade4Meta.setDisplayName("§6Upgrade 4");
+            List<String> upgrade4Lore = new ArrayList<String>(); //create a List<String> for the lore
+            upgrade4Lore.add("§3Preis: §6" + CookieManager.getUpgrade(4, player));
+            upgrade4Lore.add("§3CPC: §6+3.5");
+            upgrade4Lore.add("§3Kontostand: §6" + CookieManager.getCookie(player));
+            upgrade4Meta.setLore(upgrade4Lore);
+            upgrade4.setItemMeta(upgrade4Meta);
+            mainInv.setItem(5, upgrade4);
+
+            // 5. Upgrade
+            ItemStack upgrade5 = new ItemStack(Material.BRICK);
+            ItemMeta upgrade5Meta = upgrade5.getItemMeta();
+            assert upgrade5Meta != null;
+            upgrade5Meta.setDisplayName("§6Upgrade 5");
+            List<String> upgrade5Lore = new ArrayList<String>(); //create a List<String> for the lore
+            upgrade5Lore.add("§3Preis: §6" + CookieManager.getUpgrade(5, player));
+            upgrade5Lore.add("§3CPC: §6+7.0");
+            upgrade5Lore.add("§3Kontostand: §6" + CookieManager.getCookie(player));
+            upgrade5Meta.setLore(upgrade5Lore);
+            upgrade5.setItemMeta(upgrade5Meta);
+            mainInv.setItem(6, upgrade5);
         }
 
         player.openInventory(mainInv);
