@@ -44,3 +44,6 @@ In the Upgrade GUI you can buy Upgrades to increas your CPC.
 
 ## bStats
 [![](https://bstats.org/signatures/bukkit/Cookie%20Clicker.svg)](https://bstats.org/plugin/bukkit/Cookie%20Clicker)
+
+## Special Thanks
+@mfnalex for his Plugin Update Checker  --> https://github.com/JEFF-Media-GbR/Spigot-UpdateChecker
