@@ -1,8 +1,18 @@
 name: CookieClicker
+description: 'This is a little CookieClicker Plugin with Upgrades'
 version: '${project.version}'
 main: ch.hutch79.cookieclicker.Main
 api-version: 1.19
 authors: [ Hutch79 ]
+website: 'https://www.spigotmc.org/resources/105878/'
 commands:
   cookieclicker:
+    description: Opens the CookieClicker GUI
     aliases: cookie
+    permission: cookieclicker.use
+permissions:
+  cookieclicker.use:
+    description: Allows /cookieclicker command
+  cookieclicker.admin:
+    description: Get Update messages
+    default: op

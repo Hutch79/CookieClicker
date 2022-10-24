@@ -9,10 +9,9 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 
 
 import java.sql.SQLException;
-import java.util.Objects;
 
 
-public class GuiListerne implements Listener {
+public class GuiListener implements Listener {
 
     int autoklicker = 0;
     int autoklickerReset = 0;

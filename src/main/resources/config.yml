@@ -6,19 +6,14 @@ database:
   password: "password"
   database: "database_name"
 
-prefix: "§5[§dTestiii§5]"
+prefix: "§5[§dCookieClicker§5]"
 
-setLanguage: "de"
+setLanguage: "en"
 language:
   de:
-    noPerm: "§cDu hast nicht die benötigte berechtigung diesen befehl auszuführen."
+    noPerm: "§cDu hast nicht die benötigte Berechtigung diesen Befehl auszuführen."
     noPlayer: "§cDieses Befehl kann nur von Spielern genutzt werden."
-    noConsole: "§cDieser Befehl kann nur von der Konsole ausgeführt werden."
 
   en:
     noPerm: "§cYou have no permission to execute this command."
     noPlayer: "§cThis command can only be executet by players"
-    noConsole: "§cThis command can only be executet by console"
-
-# Debug Settings - Don't touch unless you know what you'r doing
-debugmessages: true
