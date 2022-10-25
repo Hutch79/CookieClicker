@@ -10,6 +10,7 @@ A Cookie Clicker. What should I explain? You click a Cookie and get Cookies. Wit
 - Upgrades (Currently not configurable and limited to 5 Upgrades)
 - Anti AutoKlicker system (Currently a bit Broken)
 - GUI based
+- Update Notification
 
 ## Requirements
 - MySQL Database (SQLite is planned)
@@ -27,6 +28,8 @@ A Cookie Clicker. What should I explain? You click a Cookie and get Cookies. Wit
 - Fix Multiplayer usage
 - Clean up Code
 - Make Upgrades configurable
+- Leaderboard
+- Admin commands (set, take, add, reset)
 
 ## Known Bugs
 - All players share the remaining Cookies counter
