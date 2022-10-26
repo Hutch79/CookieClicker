@@ -18,6 +18,7 @@ A Cookie Clicker. What should I explain? You click a Cookie and get Cookies. Wit
 ## Permission and Command
 ### Permissions
 `cookieclicker.use` - Use theCookieClicker command
+`cookieclicker.admin` - Update notification (OP Default)
  
 ### Commands
 `/cookieclicker` - Opens the GUI  
