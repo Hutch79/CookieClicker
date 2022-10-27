@@ -44,14 +44,18 @@ public class CookieClickerCommand implements CommandExecutor {
             }
 
             if (player.hasPermission("cookieclicker.admin")) { player.sendMessage("you have admin:");
-                if (args[0].equalsIgnoreCase("add")) {player.sendMessage("we are in the if:");
-                    Player target = Bukkit.getPlayer(args[1]);
-                    assert target != null;
-                    if (target.hasPlayedBefore()) {
-                        player.sendMessage("Huiiiiiiiiiiiii");
-                    } else {
-                        player.sendMessage("Hui:" + target);
-                        player.sendMessage("Hui:" + target.hasPlayedBefore());
+
+                if(args.lenght >= 1) {
+                    if (args[0].equalsIgnoreCase("add")) {player.sendMessage("we are in the if:");
+                        Player target = Bukkit.getPlayer(args[1]);
+                        assert target != null;
+                        if (target.hasPlayedBefore()) {
+                            player.sendMessage("Huiiiiiiiiiiiii");
+                        } else {
+                            player.sendMessage("Hui:" + target);
+                            player.sendMessage("Hui:" + target.hasPlayedBefore());
+                            
+                        }
                     }
                 }
                 else {
