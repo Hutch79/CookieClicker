@@ -23,9 +23,7 @@ public class CookieManager {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
         resultSet.next(); // Jump to next entry. First one is always null
-        double keksi = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
-        return keksi;
+        return Double.parseDouble(String.format("%.2f", resultSet.getDouble("cookies")).replace(",", ".")); // Filter out wanted element
     }
 
     //=================================================================================================================
@@ -44,9 +42,7 @@ public class CookieManager {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
         resultSet.next(); // Jump to next entry. First one is always null
-        double cpc = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
-        return cpc;
+        return Double.parseDouble(String.format("%.2f", resultSet.getDouble("cpc")).replace(",", ".")); // Filter out wanted element
     }
 
     //=================================================================================================================
@@ -65,9 +61,7 @@ public class CookieManager {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
         resultSet.next(); // Jump to next entry. First one is always null
-        double cps = Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
-        return cps;
+        return Double.parseDouble(String.format("%.2f", resultSet.getDouble("cps")).replace(",", ".")); // Filter out wanted element
     }
 
     //=================================================================================================================
@@ -86,9 +80,7 @@ public class CookieManager {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
         resultSet.next(); // Jump to next entry. First one is always null
-        double goldenCookies = Double.parseDouble(String.format("%.2f", resultSet.getDouble("goldenCookies")).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
-        return goldenCookies;
+        return Double.parseDouble(String.format("%.2f", resultSet.getDouble("goldenCookies")).replace(",", ".")); // Filter out wanted element
     }
 
     //=================================================================================================================
@@ -138,8 +130,6 @@ public class CookieManager {
         DatabaseManager.Connect();
         ResultSet resultSet = DatabaseManager.getConnection().createStatement().executeQuery("SELECT * FROM Cookies WHERE UUID = '" + player.getUniqueId() + "'"); // Get every result with given UUID
         resultSet.next(); // Jump to next entry. First one is always null
-        double value = Double.parseDouble(String.format("%.2f", resultSet.getDouble("upgrade"+upgrade)).replace(",", ".")); // Filter out wanted element
-        DatabaseManager.Disconnect();
-        return value;
+        return Double.parseDouble(String.format("%.2f", resultSet.getDouble("upgrade"+upgrade)).replace(",", ".")); // Filter out wanted element
     }
 }

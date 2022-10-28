@@ -36,7 +36,6 @@ public final class Main extends JavaPlugin {
         try {
             DatabaseManager.Connect();
             database.createTable();
-            DatabaseManager.Disconnect();
         } catch (SQLException e) {
             Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "§cMySQL-Error - Pleas check your MySQL Data!");
             throw new RuntimeException(e);

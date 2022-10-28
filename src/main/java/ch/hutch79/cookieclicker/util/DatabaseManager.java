@@ -28,6 +28,9 @@ public class DatabaseManager {
     }
 
     public static void Connect() throws SQLException {
+        if (isConnected()) {
+            return;
+        }
         String HOST = main.getConfig().getString("database.address");
         int PORT = main.getConfig().getInt("database.port");
         String DATABASE = main.getConfig().getString("database.database");
@@ -113,7 +116,7 @@ public class DatabaseManager {
         ps.setDouble(14, upgrade9_new);
         ps.setDouble(15, upgrade10_new);
         ps.execute();
-        Disconnect();
+        ps.close();
     }
 
     public static Connection getConnection() {return connection;}
