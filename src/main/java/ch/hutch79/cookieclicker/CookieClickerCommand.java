@@ -19,12 +19,13 @@ public class CookieClickerCommand implements CommandExecutor {
         this.main = main;
     }
 
+    // Main main = new Main();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof ConsoleCommandSender) {
             Bukkit.getConsoleSender().sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPlayer")));
-            return false;
+            return true;
         }
 
         if (args.length == 0) {
@@ -37,6 +38,7 @@ public class CookieClickerCommand implements CommandExecutor {
         Player player = (Player) sender;
         if (!player.hasPermission("cookieclicker.use") || !player.hasPermission("cookieclicker.admin")) {
             player.sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm")));
+            return;
         }
             try {
                 DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
