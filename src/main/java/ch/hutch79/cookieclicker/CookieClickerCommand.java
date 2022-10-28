@@ -36,8 +36,31 @@ public class CookieClickerCommand implements CommandExecutor {
             return true;
         }
 
-        if (args[0].equals("add")) { // cookie add
+        if (args[0].equalsIgnoreCase("add")) { // cookie add
             CookieAdd(sender, args);
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("take")) { // cookie take
+            CookieTake(sender, args);
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("reset")) { // cookie reset
+            try {
+                CookieReset(sender, args);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("set")) { // cookie set
+            try {
+                CookieSet(sender, args);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             return true;
         }
         return true;
@@ -74,10 +97,72 @@ public class CookieClickerCommand implements CommandExecutor {
             player.sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm")));
             return;
         }
-        if (args.length < 3) {
+        if (args.length != 3) {
             player.sendMessage(main.getConfig().getString("prefix") + Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".cmdAdd")));
             return;
         }
         CookieManager.modifyCookie(Double.parseDouble(args[2]), Bukkit.getPlayer(args[1]));
     }
+
+    /*/
+    / take command
+    /*-
+    / takes Cookies from a specific player
+    /*/
+    public void CookieTake(CommandSender sender, String[] args) {
+        Player player = (Player) sender;
+        if (!player.hasPermission("cookieclicker.admin")) {
+            player.sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm")));
+            return;
+        }
+        if (args.length != 3) {
+            player.sendMessage(main.getConfig().getString("prefix") + Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".cmdAdd")));
+            return;
+        }
+        double keksi = 0.0 - Double.parseDouble(args[2]);
+        CookieManager.modifyCookie(keksi, Bukkit.getPlayer(args[1]));
+    }
+
+    /*/
+    / reset command
+    /*-
+    / resets Cookies from of a specific player
+    /*/
+    public void CookieReset(CommandSender sender, String[] args) throws SQLException {
+        Player player = (Player) sender;
+        if (!player.hasPermission("cookieclicker.admin")) {
+            player.sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm")));
+            return;
+        }
+        if (args.length != 2) {
+            player.sendMessage(main.getConfig().getString("prefix") + Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".cmdAdd")));
+            return;
+        }
+        Player target = Bukkit.getPlayer(args[1]);
+        assert target != null;
+        double keksi = 0.0 - CookieManager.getCookie(target);
+        CookieManager.modifyCookie(keksi, target);
+    }
+
+    /*/
+    / set command
+    /*-
+    / sets Cookies of a specific player
+    /*/
+    public void CookieSet(CommandSender sender, String[] args) throws SQLException {
+        Player player = (Player) sender;
+        if (!player.hasPermission("cookieclicker.admin")) {
+            player.sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm")));
+            return;
+        }
+        if (args.length != 3) {
+            player.sendMessage(main.getConfig().getString("prefix") + Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".cmdAdd")));
+            return;
+        }
+        Player target = Bukkit.getPlayer(args[1]);
+        assert target != null;
+        double keksi = 0.0 - CookieManager.getCookie(target);
+        CookieManager.modifyCookie(keksi + Double.parseDouble(args[2]), target);
+    }
+
 }
