@@ -6,14 +6,16 @@ database:
   password: "password"
   database: "database_name"
 
-prefix: "§5[§dCookieClicker§5]"
+prefix: "§5[§dCookieClicker§5] "
 
 setLanguage: "en"
 language:
   de:
     noPerm: "§cDu hast nicht die benötigte Berechtigung diesen Befehl auszuführen."
     noPlayer: "§cDieses Befehl kann nur von Spielern genutzt werden."
+    cmdAdd: "§7Bitte nutze /cookie add [player] [ammount]"
 
   en:
     noPerm: "§cYou have no permission to execute this command."
     noPlayer: "§cThis command can only be executet by players"
+    cmdAdd: "§7Pleas use /cookie add [player] [ammount]"
