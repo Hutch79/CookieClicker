@@ -31,13 +31,20 @@ public class DatabaseManager {
         if (isConnected()) {
             return;
         }
-        String HOST = main.getConfig().getString("database.address");
-        int PORT = main.getConfig().getInt("database.port");
-        String DATABASE = main.getConfig().getString("database.database");
-        String USER = main.getConfig().getString("database.user");
-        String PASSWORD = main.getConfig().getString("database.password");
+        String type = main.getConfig().getString("database.type");
+        if (type.equalsIgnoreCase("mysql")){
+            String HOST = main.getConfig().getString("database.address");
+            int PORT = main.getConfig().getInt("database.port");
+            String DATABASE = main.getConfig().getString("database.database");
+            String USER = main.getConfig().getString("database.user");
+            String PASSWORD = main.getConfig().getString("database.password");
 
-        connection = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?useSSL=false", USER, PASSWORD);
+            connection = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?useSSL=false", USER, PASSWORD);
+        }
+
+        if (type.equalsIgnoreCase("sqlite")){
+            connection = DriverManager.getConnection("jdbc:sqlite:plugins/CookieClicker/CookieClicker.db" );
+        }
     }
 
     public static void updateUser(Player player, double cookies, double cpc, int golden_cookies, double cps, double upgrade1, double upgrade2, double upgrade3, double upgrade4, double upgrade5, double upgrade6, double upgrade7, double upgrade8, double upgrade9, double upgrade10) throws SQLException {
