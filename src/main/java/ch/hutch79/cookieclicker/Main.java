@@ -2,7 +2,7 @@ package ch.hutch79.cookieclicker;
 
 import ch.hutch79.cookieclicker.util.DatabaseManager;
 import ch.hutch79.cookieclicker.util.GuiListener;
-import ch.hutch79.cookieclicker.Metrics;
+import org.bstats.bukkit.Metrics;
 import ch.hutch79.cookieclicker.util.TabCompleter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -21,10 +21,8 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
-        int pluginId = 16433; // bStats
         final int SPIGOT_RESOURCE_ID = 105878; // Update checker
-        Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, 16433); // bStats
 
         Objects.requireNonNull(getCommand("cookieclicker")).setExecutor(new CookieClickerCommand(this));
         getCommand("cookieclicker").setTabCompleter(new TabCompleter());

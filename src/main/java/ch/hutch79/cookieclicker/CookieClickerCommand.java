@@ -73,17 +73,17 @@ public class CookieClickerCommand implements CommandExecutor {
     /*/
     public void Main(CommandSender sender) {
         Player player = (Player) sender;
-        if (!player.hasPermission("cookieclicker.use") || !player.hasPermission("cookieclicker.admin")) {
+        if (player.hasPermission("cookieclicker.use") || player.hasPermission("cookieclicker.admin")) {
+            try {
+                DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                Gui.mainGui(player, 1);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
             player.sendMessage(Objects.requireNonNull(main.getConfig().getString("language." + main.getConfig().getString("setLanguage") + ".noPerm")));
-            return;
         }
-        try {
-            DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            Gui.mainGui(player, 1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     /*/
