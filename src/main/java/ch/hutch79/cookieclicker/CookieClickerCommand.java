@@ -12,7 +12,7 @@ import ch.hutch79.cookieclicker.util.Gui;
 
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.UUID;
+
 
 public class CookieClickerCommand implements CommandExecutor {
 
