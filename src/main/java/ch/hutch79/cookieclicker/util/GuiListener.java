@@ -9,9 +9,12 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 
 public class GuiListener implements Listener {
+
+    Gui Gui = new Gui();
 
     int autoklicker = 0;
     int autoklickerReset = 0;
@@ -66,22 +69,23 @@ public class GuiListener implements Listener {
             if (e.getView().getTitle().equals("§6CookieClicker") && e.getRawSlot() <= 53) {
                 // Cookie
                 try {
-                    if (e.getCurrentItem().getType().equals(Material.COOKIE)) {
+                    if (Objects.requireNonNull(e.getCurrentItem()).getType().equals(Material.COOKIE)) {
                         double cpc = CookieManager.getCPC(player);
                         CookieManager.modifyCookie(cpc, player);
-                        autoklickerReset = autoklickerReset + 1;
-                        if (autoklickerReset >= 10) {
-                            autoklicker = 0;
+                        this.autoklickerReset = this.autoklickerReset + 1;
+                        if (this.autoklickerReset >= 10) {
+                            this.autoklicker = 0;
                         }
                         Gui.mainGui(player, 1);
+                        //Gui.updateGui(player);
 
                         // AutoKlicker Detection
                     } else if (e.getCurrentItem().getType().equals(Material.LIGHT_GRAY_STAINED_GLASS_PANE)) {
-                        autoklicker = autoklicker + 1;
-                        autoklickerReset = 0;
-                        if (autoklicker >= 8) {
+                        this.autoklicker = this.autoklicker + 1;
+                        this.autoklickerReset = 0;
+                        if (this.autoklicker >= 8) {
                             player.closeInventory();
-                            autoklicker = 0;
+                            this.autoklicker = 0;
                         }
                     }
 

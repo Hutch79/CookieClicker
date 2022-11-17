@@ -17,6 +17,7 @@ import java.util.Objects;
 public class CookieClickerCommand implements CommandExecutor {
 
     private final Main main;
+    Gui Gui = new Gui();
 
     public CookieClickerCommand(Main main) {
         this.main = main;

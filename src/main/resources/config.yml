@@ -7,7 +7,7 @@ database:
   # Only needed if using MySQL
   # Address of the Database server
   address: "172.18.0.1"
-  # Server port. Standart is 3306
+  # Server port. Standard is 3306
   port: 3306
   # Database Username
   user: "root"
@@ -20,17 +20,17 @@ database:
 prefix: "§5[§dCookieClicker§5] "
 
 # Select a Language.
-# You can simply add a language by coppy a existing language and edit it.
+# You can simply add a language by copy an existing language and edit it.
 # Set a new language code and use it in setLanguage, it'll work just fine.
 # IMPORTANT: You need every message in your own translation!
 setLanguage: "en"
 language:
   de:
     noPerm: "§cDu hast nicht die benötigte Berechtigung diesen Befehl auszuführen."
-    noPlayer: "§cDieses Befehl kann nur von Spielern genutzt werden."
+    noPlayer: "§cDieser Befehl kann nur von Spielern genutzt werden."
     cmdAdd: "§7Bitte nutze /cookie add [player] [ammount]"
 
   en:
     noPerm: "§cYou have no permission to execute this command."
-    noPlayer: "§cThis command can only be executet by players"
+    noPlayer: "§cThis command can only be executed by players"
     cmdAdd: "§7Pleas use /cookie add [player] [ammount]"
