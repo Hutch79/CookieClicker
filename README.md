@@ -10,13 +10,15 @@ A Cookie Clicker. What should I explain? You click a Cookie and get Cookies. Wit
 
 ## Features
 - MySQL
+- SQLite
 - Upgrades (Currently not configurable and limited to 5 Upgrades)
-- Anti AutoKlicker system (Currently a bit Broken)
+- Anti AutoKlicker system
 - GUI based
 - Update Notification
 
 ## Requirements
-- MySQL Database (SQLite is planned)
+- MySQL Database if you want. The standard database type is SQLite, which needs no extra configuration.
+
 
 ## Permission and Command
 ### Permissions
@@ -28,16 +30,13 @@ A Cookie Clicker. What should I explain? You click a Cookie and get Cookies. Wit
 `/cookie` - Alias of `/cookieclicker`, so it also opens the GUI
 
 ## To-Do's
-- SQLite support
 - Fix Multiplayer usage
 - Clean up Code
 - Make Upgrades configurable
 - Leaderboard
-- Admin commands (set, take, add, reset)
 
 ## Known Bugs
 - All players share the remaining Cookies counter
-- If one Player gets kicked out of the GUI because of a Autoklicker, everyone gets Kicked.
 
 ## GUI
 ### Main GUI
