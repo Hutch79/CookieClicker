@@ -77,8 +77,8 @@ public class CookieClickerCommand implements CommandExecutor {
         if (player.hasPermission("cookieclicker.use") || player.hasPermission("cookieclicker.admin")) {
             try {
                 DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                Gui.mainGui(player, 1);
-                this.main.getPlayerGuiHashMap().put(player, Gui);
+                this.Gui.mainGui(player, 1);
+                this.main.getPlayerGuiHashMap().put(player, this.Gui);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

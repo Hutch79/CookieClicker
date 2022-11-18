@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
-    private final HashMap<Player, Gui> playerGuiHashMap = new HashMap<>();
+    private static final HashMap<Player, Gui> playerGuiHashMap = new HashMap<>();
     PluginDescriptionFile pdf = this.getDescription();
     public DatabaseManager database = new DatabaseManager(this);
 
@@ -42,18 +42,7 @@ public final class Main extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "§cMySQL-Error - Pleas check your MySQL Data!");
             throw new RuntimeException(e);
         }
-        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
-        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §6Database: " + DatabaseManager.isConnected());
-        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "------------------------------------------");
-        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §6CookieClicker " + pdf.getVersion() + " §bby Hutch79");
-        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §7Has been §2Enabled");
-        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
 
-        if (pdf.getVersion().contains("Beta")) {
-            getLogger().warning("It seems you're using a dev Build from GitHub.");
-            getLogger().warning("Please note, that this Version should not be used in production environment.");
-            getLogger().warning("If you find any Bugs, please report them on GitHub: https://github.com/Hutch79/CookieClicker");
-        }
         new UpdateChecker(this, UpdateCheckSource.SPIGET, "" + SPIGOT_RESOURCE_ID + "")
                 .setDownloadLink("https://www.spigotmc.org/resources/105878/")
                 .setChangelogLink("https://www.spigotmc.org/resources/105878/updates")
@@ -63,6 +52,19 @@ public final class Main extends JavaPlugin {
                 .setUserAgent(new UserAgentBuilder().addPluginNameAndVersion().addServerVersion())
                 .checkEveryXHours(12) //Warn people every 12 hours
                 .checkNow();
+
+        if (pdf.getVersion().contains("Beta")) {
+            getLogger().warning("It seems you're using a dev Build from GitHub.");
+            getLogger().warning("Please note, that this Version should not be used in production environment.");
+            getLogger().warning("If you find any Bugs, please report them on GitHub: https://github.com/Hutch79/CookieClicker");
+        }
+
+        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
+        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §6Database: " + DatabaseManager.isConnected());
+        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "------------------------------------------");
+        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §6CookieClicker " + pdf.getVersion() + " §bby Hutch79");
+        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §7Has been §2Enabled");
+        Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
     }
 
     @Override
@@ -76,8 +78,8 @@ public final class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §7Has been §cDisabled");
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
     }
-    public HashMap<Player, Gui> getPlayerGuiHashMap() {
-        return this.playerGuiHashMap;
+    public static HashMap<Player, Gui> getPlayerGuiHashMap() {
+        return playerGuiHashMap;
     }
 }
 

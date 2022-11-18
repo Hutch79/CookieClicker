@@ -10,14 +10,16 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Objects;
+
 
 
 public class GuiListener implements Listener {
 
-    // Gui Gui = new Gui();
-    Main main = new Main();
-
+    //Gui Gui = new Gui();
+    //Main main = new Main();
+    HashMap<Player, Gui> gui = Main.getPlayerGuiHashMap();
 
     int autoklicker = 0;
     int autoklickerReset = 0;
@@ -47,11 +49,11 @@ public class GuiListener implements Listener {
                     break;
 
                 case 9: // Klicker
-                    Gui.mainGui(player, 1);
+                    gui.get(player).mainGui(player, 1);
                     break;
 
                 case 18: // Shop
-                    Gui.mainGui(player, 2);
+                    gui.get(player).mainGui(player, 2);
                     break;
 
                 case 27:
@@ -79,7 +81,7 @@ public class GuiListener implements Listener {
                         if (this.autoklickerReset >= 10) {
                             this.autoklicker = 0;
                         }
-                        Gui.mainGui(player, 1);
+                        gui.get(player).mainGui(player, 1);
                         //Gui.updateGui(player);
 
                         // AutoKlicker Detection
@@ -103,7 +105,7 @@ public class GuiListener implements Listener {
                         if (price < 100) {
                             price = 100.0;
                             CookieManager.modifyUpgrade(1, price, player);
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         if (CookieManager.getCookie(player) >= price) {
                             CookieManager.modifyCookie(-price, player);
@@ -111,7 +113,7 @@ public class GuiListener implements Listener {
                             double price_new = (price * 1.15) - price;
                             CookieManager.modifyUpgrade(1, price_new, player);
 
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         break;
 
@@ -120,7 +122,7 @@ public class GuiListener implements Listener {
                         if (price2 < 500) {
                             price2 = 500.0;
                             CookieManager.modifyUpgrade(2, price2, player);
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         if (CookieManager.getCookie(player) >= price2) {
                             CookieManager.modifyCookie(-price2, player);
@@ -128,7 +130,7 @@ public class GuiListener implements Listener {
                             double price2_new = (price2 * 1.15) - price2;
                             CookieManager.modifyUpgrade(2, price2_new, player);
 
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         break;
 
@@ -137,7 +139,7 @@ public class GuiListener implements Listener {
                         if (price3 < 1500) {
                             price3 = 1500.0;
                             CookieManager.modifyUpgrade(3, price3, player);
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         if (CookieManager.getCookie(player) >= price3) {
                             CookieManager.modifyCookie(-price3, player);
@@ -145,7 +147,7 @@ public class GuiListener implements Listener {
                             double price3_new = (price3 * 1.15) - price3;
                             CookieManager.modifyUpgrade(3, price3_new, player);
 
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         break;
 
@@ -154,7 +156,7 @@ public class GuiListener implements Listener {
                         if (price4 < 5000) {
                             price4 = 5000.0;
                             CookieManager.modifyUpgrade(4, price4, player);
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         if (CookieManager.getCookie(player) >= price4) {
                             CookieManager.modifyCookie(-price4, player);
@@ -162,7 +164,7 @@ public class GuiListener implements Listener {
                             double price4_new = (price4 * 1.15) - price4;
                             CookieManager.modifyUpgrade(4, price4_new, player);
 
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         break;
 
@@ -171,7 +173,7 @@ public class GuiListener implements Listener {
                         if (price5 < 10000) {
                             price5 = 10000.0;
                             CookieManager.modifyUpgrade(5, price5, player);
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         if (CookieManager.getCookie(player) >= price5) {
                             CookieManager.modifyCookie(-price5, player);
@@ -179,7 +181,7 @@ public class GuiListener implements Listener {
                             double price5_new = (price5 * 1.15) - price5;
                             CookieManager.modifyUpgrade(5, price5_new, player);
 
-                            Gui.mainGui(player, 2);
+                            gui.get(player).mainGui(player, 2);
                         }
                         break;
 
