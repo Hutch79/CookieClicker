@@ -6,7 +6,7 @@
 
     <groupId>ch.hutch79</groupId>
     <artifactId>CookieClicker</artifactId>
-    <version>1.0</version>
+    <version>0.4-Beta</version>
     <packaging>jar</packaging>
 
     <name>CookieClicker</name>

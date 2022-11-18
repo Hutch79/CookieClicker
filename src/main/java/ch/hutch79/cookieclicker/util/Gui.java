@@ -14,7 +14,6 @@ import java.util.List;
 
 
 public class Gui {
-
     private int keksCount = 0;
     private int random = 0;
     public Inventory mainInv;
@@ -24,13 +23,11 @@ public class Gui {
     }
 
     public void mainGui(Player player, int page) throws SQLException {
-
         if (page == 2) {
             this.mainInv = Bukkit.createInventory(player, 54, "§6CookieClicker - Upgrade");
         } else {
             this.mainInv = Bukkit.createInventory(player, 54, "§6CookieClicker");
         }
-
         // Placeholder
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();

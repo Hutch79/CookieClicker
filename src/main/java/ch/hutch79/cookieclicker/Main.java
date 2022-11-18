@@ -1,21 +1,24 @@
 package ch.hutch79.cookieclicker;
 
 import ch.hutch79.cookieclicker.util.DatabaseManager;
+import ch.hutch79.cookieclicker.util.Gui;
 import ch.hutch79.cookieclicker.util.GuiListener;
 import org.bstats.bukkit.Metrics;
 import ch.hutch79.cookieclicker.util.TabCompleter;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.jeff_media.updatechecker.*;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
+    private final HashMap<Player, Gui> playerGuiHashMap = new HashMap<>();
     PluginDescriptionFile pdf = this.getDescription();
-
     public DatabaseManager database = new DatabaseManager(this);
 
     @Override
@@ -73,5 +76,9 @@ public final class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "| §7Has been §cDisabled");
         Bukkit.getConsoleSender().sendMessage(getConfig().getString("prefix") + "==========================================");
     }
+    public HashMap<Player, Gui> getPlayerGuiHashMap() {
+        return this.playerGuiHashMap;
+    }
 }
+
 

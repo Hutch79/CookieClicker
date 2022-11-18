@@ -78,6 +78,7 @@ public class CookieClickerCommand implements CommandExecutor {
             try {
                 DatabaseManager.updateUser(player, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 Gui.mainGui(player, 1);
+                this.main.getPlayerGuiHashMap().put(player, Gui);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

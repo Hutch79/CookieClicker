@@ -1,5 +1,6 @@
 package ch.hutch79.cookieclicker.util;
 
+import ch.hutch79.cookieclicker.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,7 +15,9 @@ import java.util.Objects;
 
 public class GuiListener implements Listener {
 
-    Gui Gui = new Gui();
+    // Gui Gui = new Gui();
+    Main main = new Main();
+
 
     int autoklicker = 0;
     int autoklickerReset = 0;
